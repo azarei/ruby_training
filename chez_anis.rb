@@ -7,7 +7,7 @@
 # end
 
 
-bread_inventory = Pantry.new(:bread => {"white" => 12, "brown" => 12, "rye" => 12, "sourdough" => 12}, :meat => {"salami" => 10, "turkey" => 10, "ham" => 10}, :veggie => {"tomato" => 5, "lettuce" => 5, "pickle" => 5})
+# bread_inventory = Pantry.new(:bread => {"white" => 12, "brown" => 12, "rye" => 12, "sourdough" => 12}, :meat => {"salami" => 10, "turkey" => 10, "ham" => 10}, :veggie => {"tomato" => 5, "lettuce" => 5, "pickle" => 5})
 
 
 class Ingredient
@@ -21,10 +21,19 @@ end
 class Pantry
     def initialize
         @@ingredients = Hash.new
+        @@types = Hash.new
     end
     def add(ingredient)
         ## add the unique ingredient by name to the pantry
         @@ingredients[ingredient.name] = ingredient
+
+        ## make sure we know about that type
+        if @@types.key?(ingredient.type) do
+            @@types[ingredient.type] = ingredient
+        end 
+        if != (@@types.has_key(ingredient.type) do
+       end     
+        @@types[ingredient.type] = ingredient
     end
     def get(name)
         @@ingredients[name]
@@ -33,25 +42,13 @@ class Pantry
     def contains
         @@ingredients.keys
     end
-    def types()
-        types = @@ingredients.each_value { |ingredient| ingredient.type}
-        type.uniq
+    def types(type)
         # return what types of ingredients we have
     end 
-
-    def getBread
-        # do we even know about bread
-        return nil unless self.types.contains?('bread')
-
-    end 
 end
 
 
-class Sandwich
-    def add(ingredient)
 
-    end
-end
 
 # class ChezAnis
 #     def check_inventory(bread_type, meat_type, veggie_type)
