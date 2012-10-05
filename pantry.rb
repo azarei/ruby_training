@@ -7,22 +7,37 @@
 # end
 
 
-# bread_inventory = Pantry.new(:bread => {"white" => 12, "brown" => 12, "rye" => 12, "sourdough" => 12}, :meat => {"salami" => 10, "turkey" => 10, "ham" => 10}, :veggie => {"tomato" => 5, "lettuce" => 5, "pickle" => 5})
 
 
 class Ingredient
-    attr_reader :name, :type
-    def initialize(name, type)
+    #Sets up my ingredients
+    attr_reader :name, :type, :amount
+    def initialize(name, type, amount)
         @name = name
         @type = type
+        @amount = amount
     end 
 end
 
 class Pantry
+    #pull all my ingredients into the pantry and make them an array
     def initialize
         @@ingredients = Hash.new
-        @@types = Hash.new
     end
+    #grab all the different NAMES of the ingredients in the pantry
+    def names
+        @@ingredients.collect do |i|
+            i.name
+        end
+    end 
+    #grab all the unique TYPES of the ingredients in the pantry
+    def types
+        types = @@ingredients.collect do |i|
+            i.types
+        end
+        @@types = types.unique
+    end
+
     def add(ingredient)
         ## add the unique ingredient by name to the pantry
         @@ingredients[ingredient.name] = ingredient
@@ -31,9 +46,10 @@ class Pantry
         if @@types.key?(ingredient.type) do
             @@types[ingredient.type] = ingredient
         end 
-        if != (@@types.has_key(ingredient.type) do
-       end     
-        @@types[ingredient.type] = ingredient
+        if ! (@@types.has_key(ingredient.type) do
+            @@types[ingredient.type] = Array.new
+        end     
+        @@types[ingredient.type].push(ingredient)
     end
     def get(name)
         @@ingredients[name]
