@@ -1,13 +1,4 @@
-# class Bakery
-#     def bread_delivery(bread_type)
-#         bread_inventory = {"white" => 12, "brown" => 12, "rye" => 12, "sourdough" => 12}
-#         bread_available = bread_inventory.has_key?(bread_type)
-#         return self
-#     end
-# end
-
-
-
+require "delivery_truck.rb"
 
 class Ingredient
     #Sets up my ingredients
@@ -16,7 +7,8 @@ class Ingredient
         @name = name
         @type = type
         @amount = amount
-    end 
+    DeliveryTruck.stock_pantry
+    end
 end
 
 class Pantry
@@ -41,30 +33,28 @@ class Pantry
     def add(ingredient)
         ## add the unique ingredient by name to the pantry
         @@ingredients[ingredient.name] = ingredient
-
         ## make sure we know about that type
-        if @@types.key?(ingredient.type) do
+        if @@types.key?(ingredient.type)
             @@types[ingredient.type] = ingredient
-        end 
-        if ! (@@types.has_key(ingredient.type) do
+        else 
             @@types[ingredient.type] = Array.new
-        end     
+        end
         @@types[ingredient.type].push(ingredient)
+    
     end
     def get(name)
         @@ingredients[name]
         #returns object or nil
     end
+    
     def contains
         @@ingredients.keys
     end
+    
     def types(type)
         # return what types of ingredients we have
     end 
 end
-
-
-
 
 # class ChezAnis
 #     def check_inventory(bread_type, meat_type, veggie_type)
