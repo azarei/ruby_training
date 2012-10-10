@@ -1,8 +1,13 @@
 class DeliveryTruck
   def stock_pantry
-    ingredient1 = Ingredient.new("white", "bread", 12)
-    my_shop.add(ingredient1)
-    ingredient1 = Ingredient.new("brown", "bread", 12)
-    my_shop.add(ingredient1)
+    pantry = Pantry.new
+
+    ingredient1 = Ingredient.new("white", "bread")
+    pantry.add(ingredient1)
+
+    ingredient1 = Ingredient.new("brown", "bread")
+    pantry.add(ingredient1)
+
+    pantry
   end
 end
