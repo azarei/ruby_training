@@ -1,4 +1,4 @@
-class SandwichPresenter
+class Server
   attr_accessor :sandwich
 
   def display
